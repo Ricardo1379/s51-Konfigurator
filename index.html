@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S51 Konfigurator</title>
 <style>
-/* Button-Grundstil */
 button {
-  background-color: #1a73e8; /* coole Grundfarbe, kann angepasst werden */
+  background-color: #1a73e8; /* coole Grundfarbe */
   color: white;
   border: none;
   padding: 12px 25px;
@@ -16,28 +15,19 @@ button {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transition: all 0.2s ease; /* weiche Übergänge */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.2s ease;
 }
-
-/* Hover-Effekt: Maus drüber */
 button:hover {
-  background-color: #4285f4;   /* etwas heller */
-  transform: scale(1.05);      /* leicht vergrößern */
+  background-color: #4285f4;
+  transform: scale(1.05);
   box-shadow: 0 6px 8px rgba(0,0,0,0.3);
 }
-
-/* Klick-Effekt: gedrückt */
 button:active {
-  background-color: #0b59d1;   /* dunkler */
-  opacity: 0.8;                /* leicht durchsichtig */
-  transform: scale(0.95);      /* leicht verkleinern */
+  background-color: #0b59d1;
+  opacity: 0.8;
+  transform: scale(0.95);
   box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 }
-
-/* Buttons, die besonders hervorstechen sollen */
 button.primary {
   background-color: #ff6600;
 }
@@ -48,25 +38,13 @@ button.primary:active {
   background-color: #e65c00;
   opacity: 0.7;
 }
-
-/* Bild im Button */
-button img {
-  height: 100px; /* Bildgröße anpassen */
-  margin: 0;
-}
 </style>
 </head>
 <body>
 
 <h1>S51 Konfigurator</h1>
-
-<!-- Tankauswahl -->
-<div id="tank-selection">
-  <button class="primary">
-    <img src="https://raw.githubusercontent.com/Ricardo1379/s51-Konfigurator/main/Screenshot%202025-08-19%20at%2021-44-51%20Tank%20_%20Benzintank%20passend%20f%C3%BCr%20Simson%20S51%20_%20S50%20_%20S70%20mit%20Seitendeckel%20Craftride%20gr%C3%BCn%20DPLS1%20%E2%9C%93%20Jetzt%20Bestellen!.png" 
-         alt="Grüner Tank">
-  </button>
-</div>
+<button>Standard Button</button>
+<button class="primary">Primary Button</button>
 
 </body>
 </html>
