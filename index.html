@@ -1,92 +1,39 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<title>S51 Konfigurator</title>
-<style>
-  body { font-family: Arial, sans-serif; text-align:center; background:#f4f4f4; }
-  #configurator { display:flex; justify-content:center; margin-top:20px; }
-  #options { margin-left:20px; text-align:left; }
-  canvas { border:1px solid #ccc; }
-</style>
-</head>
-<body>
-<h1>S51 Konfigurator</h1>
-
-<div id="configurator">
-  <div id="canvas-container"></div>
-  <div id="options">
-    <h3>Optionen:</h3>
-    <label>Farbe:
-      <select id="colorSelect">
-        <option value="red">Rot</option>
-        <option value="blue">Blau</option>
-        <option value="black">Schwarz</option>
-      </select>
-    </label><br><br>
-    <label>Felgen:
-      <select id="wheelSelect">
-        <option value="classic">Klassisch</option>
-        <option value="sport">Sport</option>
-      </select>
-    </label><br><br>
-    <h3>Preis: <span id="price">2000 €</span></h3>
-    <button id="sendConfig">Konfiguration senden</button>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
-<script>
-let scene = new THREE.Scene();
-let camera = new THREE.PerspectiveCamera(75, 400/300, 0.1, 1000);
-let renderer = new THREE.WebGLRenderer();
-renderer.setSize(400, 300);
-document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-// Einfaches Moped als Box-Placeholder
-let geometry = new THREE.BoxGeometry(2, 1, 1);
-let material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-let bike = new THREE.Mesh(geometry, material);
-scene.add(bike);
-
-camera.position.z = 5;
-
-function animate() {
-  requestAnimationFrame(animate);
-  bike.rotation.y += 0.01;
-  renderer.render(scene, camera);
-}
-animate();
-
-// Optionen
-let colorSelect = document.getElementById('colorSelect');
-let wheelSelect = document.getElementById('wheelSelect');
-let priceDisplay = document.getElementById('price');
-
-colorSelect.addEventListener('change', () => {
-  let color = colorSelect.value;
-  if(color === 'red') bike.material.color.set(0xff0000);
-  if(color === 'blue') bike.material.color.set(0x0000ff);
-  if(color === 'black') bike.material.color.set(0x000000);
-  updatePrice();
-});
-
-wheelSelect.addEventListener('change', updatePrice);
-
-function updatePrice() {
-  let price = 2000; // Basispreis
-  if(wheelSelect.value === 'sport') price += 200;
-  priceDisplay.innerText = price + ' €';
+button {
+  background-color: #1a73e8; /* coole Grundfarbe, kann angepasst werden */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: all 0.2s ease; /* weiche Übergänge */
 }
 
-// Konfiguration senden
-document.getElementById('sendConfig').addEventListener('click', () => {
-  let color = colorSelect.value;
-  let wheels = wheelSelect.value;
-  let price = priceDisplay.innerText;
-  let mailto = `mailto:deine-email@example.com?subject=S51 Konfiguration&body=Farbe: ${color}%0AFelgen: ${wheels}%0APreis: ${price}`;
-  window.location.href = mailto;
-});
-</script>
-</body>
-</html>
+/* Hover-Effekt: Maus drüber */
+button:hover {
+  background-color: #4285f4;   /* etwas heller */
+  transform: scale(1.05);      /* leicht vergrößern */
+  box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}
+
+/* Klick-Effekt: gedrückt */
+button:active {
+  background-color: #0b59d1;   /* dunkler */
+  opacity: 0.8;                /* leicht durchsichtig */
+  transform: scale(0.95);      /* leicht verkleinern */
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+
+/* Optional: Für Buttons, die besonders hervorstechen sollen */
+button.primary {
+  background-color: #ff6600;
+}
+button.primary:hover {
+  background-color: #ff8533;
+}
+button.primary:active {
+  background-color: #e65c00;
+  opacity: 0.7;
+}
