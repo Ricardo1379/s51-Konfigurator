@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S51 Konfigurator</title>
+<style>
+/* Button-Grundstil */
 button {
   background-color: #1a73e8; /* coole Grundfarbe, kann angepasst werden */
   color: white;
@@ -9,6 +17,9 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   transition: all 0.2s ease; /* weiche Übergänge */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Hover-Effekt: Maus drüber */
@@ -26,7 +37,7 @@ button:active {
   box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 }
 
-/* Optional: Für Buttons, die besonders hervorstechen sollen */
+/* Buttons, die besonders hervorstechen sollen */
 button.primary {
   background-color: #ff6600;
 }
@@ -37,3 +48,25 @@ button.primary:active {
   background-color: #e65c00;
   opacity: 0.7;
 }
+
+/* Bild im Button */
+button img {
+  height: 100px; /* Bildgröße anpassen */
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<h1>S51 Konfigurator</h1>
+
+<!-- Tankauswahl -->
+<div id="tank-selection">
+  <button class="primary">
+    <img src="https://raw.githubusercontent.com/Ricardo1379/s51-Konfigurator/main/Screenshot%202025-08-19%20at%2021-44-51%20Tank%20_%20Benzintank%20passend%20f%C3%BCr%20Simson%20S51%20_%20S50%20_%20S70%20mit%20Seitendeckel%20Craftride%20gr%C3%BCn%20DPLS1%20%E2%9C%93%20Jetzt%20Bestellen!.png" 
+         alt="Grüner Tank">
+  </button>
+</div>
+
+</body>
+</html>
