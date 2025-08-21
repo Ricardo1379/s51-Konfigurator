@@ -1,50 +1,134 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S51 Konfigurator</title>
-<style>
-button {
-  background-color: #1a73e8; /* coole Grundfarbe */
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transition: all 0.2s ease;
+{
+  "product": "Simson S51 Konfigurator",
+  "categories": [
+    {
+      "name": "Modell",
+      "options": [
+        { "name": "S51 Standard", "price": 0 },
+        { "name": "S51 Enduro", "price": 200 },
+        { "name": "S51 Special", "price": 350 }
+      ]
+    },
+    {
+      "name": "Optik",
+      "subcategories": [
+        {
+          "name": "Tank-Set",
+          "options": [
+            { "name": "Grün", "image": "URL_ZUM_BILD", "price": 0 },
+            { "name": "Schwarz", "image": "URL_ZUM_BILD", "price": 50 },
+            { "name": "Rot", "image": "URL_ZUM_BILD", "price": 50 },
+            { "name": "Sonderlack", "image": "URL_ZUM_BILD", "price": 150 }
+          ]
+        },
+        {
+          "name": "Sitzbank",
+          "options": [
+            { "name": "Flach", "price": 0 },
+            { "name": "Retro", "price": 80 },
+            { "name": "Komfort", "price": 120 }
+          ]
+        },
+        {
+          "name": "Seitendeckel",
+          "options": [
+            { "name": "Standard", "price": 0 },
+            { "name": "Lackiert", "price": 60 },
+            { "name": "Carbon-Look", "price": 90 }
+          ]
+        },
+        {
+          "name": "Felgen",
+          "options": [
+            { "name": "Silber", "price": 0 },
+            { "name": "Schwarz", "price": 70 },
+            { "name": "Gold", "price": 100 }
+          ]
+        },
+        {
+          "name": "Lenker",
+          "options": [
+            { "name": "Serie", "price": 0 },
+            { "name": "Cross", "price": 60 },
+            { "name": "High-Rise", "price": 80 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Technik",
+      "subcategories": [
+        {
+          "name": "Motor",
+          "options": [
+            { "name": "50ccm", "price": 0 },
+            { "name": "70ccm", "price": 400 },
+            { "name": "85ccm", "price": 700 }
+          ]
+        },
+        {
+          "name": "Auspuff",
+          "options": [
+            { "name": "Serie", "price": 0 },
+            { "name": "Sport", "price": 120 },
+            { "name": "Chrom", "price": 160 }
+          ]
+        },
+        {
+          "name": "Federbeine",
+          "options": [
+            { "name": "Serie", "price": 0 },
+            { "name": "Gasdruck", "price": 150 },
+            { "name": "Sport", "price": 200 }
+          ]
+        },
+        {
+          "name": "Bremsen",
+          "options": [
+            { "name": "Serie", "price": 0 },
+            { "name": "Scheibe vorn", "price": 300 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Extras",
+      "subcategories": [
+        {
+          "name": "Spiegel",
+          "options": [
+            { "name": "Serie", "price": 0 },
+            { "name": "Eckig", "price": 20 },
+            { "name": "Rund", "price": 25 }
+          ]
+        },
+        {
+          "name": "Blinker",
+          "options": [
+            { "name": "Serie", "price": 0 },
+            { "name": "LED klein", "price": 60 },
+            { "name": "LED Bullet", "price": 90 }
+          ]
+        },
+        {
+          "name": "Gepäckträger",
+          "options": [
+            { "name": "Kein Träger", "price": 0 },
+            { "name": "Mit Träger", "price": 75 }
+          ]
+        },
+        {
+          "name": "Handyhalter / USB-Lader",
+          "options": [
+            { "name": "Nein", "price": 0 },
+            { "name": "Ja", "price": 45 }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "showPrice": true,
+    "submitButton": "Konfiguration absenden"
+  }
 }
-button:hover {
-  background-color: #4285f4;
-  transform: scale(1.05);
-  box-shadow: 0 6px 8px rgba(0,0,0,0.3);
-}
-button:active {
-  background-color: #0b59d1;
-  opacity: 0.8;
-  transform: scale(0.95);
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-}
-button.primary {
-  background-color: #ff6600;
-}
-button.primary:hover {
-  background-color: #ff8533;
-}
-button.primary:active {
-  background-color: #e65c00;
-  opacity: 0.7;
-}
-</style>
-</head>
-<body>
-
-<h1>S51 Konfigurator</h1>
-<button>Standard Button</button>
-<button class="primary">Primary Button</button>
-
-</body>
-</html>
