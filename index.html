@@ -1,134 +1,84 @@
-{
-  "product": "Simson S51 Konfigurator",
-  "categories": [
-    {
-      "name": "Modell",
-      "options": [
-        { "name": "S51 Standard", "price": 0 },
-        { "name": "S51 Enduro", "price": 200 },
-        { "name": "S51 Special", "price": 350 }
-      ]
-    },
-    {
-      "name": "Optik",
-      "subcategories": [
-        {
-          "name": "Tank-Set",
-          "options": [
-            { "name": "Grün", "image": "URL_ZUM_BILD", "price": 0 },
-            { "name": "Schwarz", "image": "URL_ZUM_BILD", "price": 50 },
-            { "name": "Rot", "image": "URL_ZUM_BILD", "price": 50 },
-            { "name": "Sonderlack", "image": "URL_ZUM_BILD", "price": 150 }
-          ]
-        },
-        {
-          "name": "Sitzbank",
-          "options": [
-            { "name": "Flach", "price": 0 },
-            { "name": "Retro", "price": 80 },
-            { "name": "Komfort", "price": 120 }
-          ]
-        },
-        {
-          "name": "Seitendeckel",
-          "options": [
-            { "name": "Standard", "price": 0 },
-            { "name": "Lackiert", "price": 60 },
-            { "name": "Carbon-Look", "price": 90 }
-          ]
-        },
-        {
-          "name": "Felgen",
-          "options": [
-            { "name": "Silber", "price": 0 },
-            { "name": "Schwarz", "price": 70 },
-            { "name": "Gold", "price": 100 }
-          ]
-        },
-        {
-          "name": "Lenker",
-          "options": [
-            { "name": "Serie", "price": 0 },
-            { "name": "Cross", "price": 60 },
-            { "name": "High-Rise", "price": 80 }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Technik",
-      "subcategories": [
-        {
-          "name": "Motor",
-          "options": [
-            { "name": "50ccm", "price": 0 },
-            { "name": "70ccm", "price": 400 },
-            { "name": "85ccm", "price": 700 }
-          ]
-        },
-        {
-          "name": "Auspuff",
-          "options": [
-            { "name": "Serie", "price": 0 },
-            { "name": "Sport", "price": 120 },
-            { "name": "Chrom", "price": 160 }
-          ]
-        },
-        {
-          "name": "Federbeine",
-          "options": [
-            { "name": "Serie", "price": 0 },
-            { "name": "Gasdruck", "price": 150 },
-            { "name": "Sport", "price": 200 }
-          ]
-        },
-        {
-          "name": "Bremsen",
-          "options": [
-            { "name": "Serie", "price": 0 },
-            { "name": "Scheibe vorn", "price": 300 }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Extras",
-      "subcategories": [
-        {
-          "name": "Spiegel",
-          "options": [
-            { "name": "Serie", "price": 0 },
-            { "name": "Eckig", "price": 20 },
-            { "name": "Rund", "price": 25 }
-          ]
-        },
-        {
-          "name": "Blinker",
-          "options": [
-            { "name": "Serie", "price": 0 },
-            { "name": "LED klein", "price": 60 },
-            { "name": "LED Bullet", "price": 90 }
-          ]
-        },
-        {
-          "name": "Gepäckträger",
-          "options": [
-            { "name": "Kein Träger", "price": 0 },
-            { "name": "Mit Träger", "price": 75 }
-          ]
-        },
-        {
-          "name": "Handyhalter / USB-Lader",
-          "options": [
-            { "name": "Nein", "price": 0 },
-            { "name": "Ja", "price": 45 }
-          ]
-        }
-      ]
-    }
-  ],
-  "summary": {
-    "showPrice": true,
-    "submitButton": "Konfiguration absenden"
-  }
+<!doctype html>
+if(o.thumb){ const im=document.createElement('img'); im.src=o.thumb; im.alt=o.title; thumb.appendChild(im);} else { thumb.innerHTML='<span style="font-size:11px;color:#8b93a7">Kein Bild</span>'; }
+const title = document.createElement('div'); title.className='title'; title.textContent=o.title;
+const price = document.createElement('div'); price.className='price'; price.textContent = (o.price||0)>0?('+'+money(o.price)):'+'+money(0);
+card.appendChild(thumb); card.appendChild(title); card.appendChild(price);
+
+
+card.addEventListener('click',()=>{
+if(cat.type==='multi'){
+if(state.extraSet.has(o.id)) state.extraSet.delete(o.id); else state.extraSet.add(o.id);
+card.classList.toggle('active');
+}else{
+state.selections[cat.id]=o.id;
+// deactivate siblings
+[...opts.children].forEach(c=>c.classList.remove('active'));
+card.classList.add('active');
 }
+refreshLayers(); updatePriceUI(); pushURLState(); updateMailto();
+});
+
+
+opts.appendChild(card);
+});
+
+
+root.appendChild(row);
+});
+}
+
+
+function updateMailto(){
+const lines = [];
+lines.push('Meine Konfiguration:');
+CONFIG.categories.forEach(cat=>{
+if(cat.type==='multi'){
+const chosen = (cat.options||[]).filter(o=>state.extraSet.has(o.id)).map(o=>o.title);
+lines.push(`- ${cat.label}: ${chosen.length?chosen.join(', '):'keine'}`);
+}else{
+const sel = state.selections[cat.id];
+const opt = (cat.options||[]).find(o=>o.id===sel);
+lines.push(`- ${cat.label}: ${opt?opt.title:sel}`);
+}
+});
+lines.push('');
+lines.push('Link zur Konfiguration (öffnet den gleichen Stand):');
+lines.push(location.href);
+lines.push('');
+lines.push('Bitte um Angebot mit Zeit & Gesamtpreis. Danke!');
+
+
+const subject = encodeURIComponent('S51/S52 – Anfrage Konfiguration');
+const body = encodeURIComponent(lines.join('\n'));
+el('#mailtoBtn').href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
+}
+
+
+function resetAll(){
+state.selections = {};
+state.extraSet = new Set();
+renderOptions();
+if(CONFIG.preview.sequence && CONFIG.preview.sequence.length){ setup360(); }
+else { refreshLayers(); }
+updatePriceUI(); pushURLState(); updateMailto();
+}
+
+
+// ACTIONS
+el('#copyLink').addEventListener('click',()=>{ pushURLState(); navigator.clipboard.writeText(location.href).then(()=>{
+const b=el('#copyLink'); const old=b.textContent; b.textContent='Kopiert!'; setTimeout(()=>b.textContent=old,1200);
+}); });
+el('#resetBtn').addEventListener('click', resetAll);
+
+
+// INIT
+applyURLState();
+renderOptions();
+if(CONFIG.preview.sequence && CONFIG.preview.sequence.length){ setup360(); }
+else { refreshLayers(); }
+updatePriceUI();
+pushURLState();
+updateMailto();
+</script>
+</body>
+</html>
